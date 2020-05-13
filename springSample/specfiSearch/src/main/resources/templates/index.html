@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>あいまい検索</title>
+</head>
+<body>
+  <form th:action="@{/}" method="POST">
+    <input type="text" name="search" value="" />
+    <input type="submit" value="検索" />
+  </form>
+ 
+  <table border="1" th:if="${members !=null}">
+    <thead>
+      <tr>
+        <th>ID</th><th>名前</th><th>Email</th><th>TEL</th><th>住所</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr th:each="member : ${members}">
+          <td th:text="${member.id}"></td>
+          <td>
+            <div>
+              <span th:text="${member.lastNameKana}"></span>
+              <span th:text="${member.firstNameKana}"></span>
+            </div>
+            <div>
+              <span th:text="${member.lastName}"></span>
+              <span th:text="${member.firstName}"></span>
+            </div>
+          </td>
+          <td>
+              <span th:text="${member.email}"></span>
+          </td>
+          <td>
+              <span th:text="${member.tel}"></span>
+          </td>
+          <td>
+            <span th:text="${member.addressLevel01}"></span>
+            <span th:text="${member.addressLevel02}"></span>
+            <span th:text="${member.addressLine01}"></span>
+            <span th:text="${member.addressLine02}"></span>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+</body>
+</html>
