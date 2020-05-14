@@ -3,23 +3,27 @@ package com.example.miyamoto.spring.service;
 import java.util.List;
  
 import org.springframework.data.jpa.domain.Specification;
-//import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.miyamoto.spring.entity.Member;
-import com.example.miyamoto.spring.repository.MemberRepository;
+import com.example.miyamoto.spring.entity.Company;
+import com.example.miyamoto.spring.repository.CompanyRepository;
 import static com.example.miyamoto.spring.service.SpecificationService.*; 
  
 @Service
-public class MemberService {
+public class CompanyService {
  
     @Autowired
-    MemberRepository repository;
+    CompanyRepository repository;
  
-    public List<Member> findMembers(String target) {
-    	//曖昧検索
+    public List<Company> findCompanys(String target) {
+    	//
         return this.repository.findAll(Specification
-                .where(FuzzySearch(target)));
+                .where(CompanyNameEqual(target)));
+    }
+    
+    public List<Company> findAll() {
+    	//
+        return this.repository.findAll();
     }
 }

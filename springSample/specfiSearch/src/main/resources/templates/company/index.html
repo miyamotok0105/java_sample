@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>会社検索</title>
+</head>
+<body>
+  <h1>会社検索</h1>
+
+  <form th:action="@{/company}" method="POST">
+    <input type="text" name="search" value="" />
+    <input type="submit" value="検索" />
+  </form>
+ 
+  <table border="1" th:if="${companys !=null}">
+    <thead>
+      <tr>
+        <th>ID</th><th>会社名</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr th:each="company : ${companys}">
+          <td th:text="${company.companyId}"></td>
+          <td th:text="${company.companyName}"></td>
+        </tr>
+    </tbody>
+  </table>
+</body>
+</html>

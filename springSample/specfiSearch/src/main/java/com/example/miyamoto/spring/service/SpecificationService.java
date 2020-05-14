@@ -1,9 +1,21 @@
 package com.example.miyamoto.spring.service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.data.jpa.domain.Specification;
+
+import com.example.miyamoto.spring.entity.Company;
 import com.example.miyamoto.spring.entity.Member;
- 
+
+
 @Service
 public class SpecificationService {
  
@@ -42,6 +54,15 @@ public class SpecificationService {
         } else {
             return "%" + searchTerm.toLowerCase() + "%";
         }
+    }
+    
+    public static Specification<Company> CompanyNameEqual(String companyName) {
+        return StringUtils.isEmpty(companyName) ? null : new Specification<Company>() {
+            @Override
+            public Predicate toPredicate(Root<Company> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                return criteriaBuilder.equal(root.get("companyName"), companyName);
+            }
+        };
     }
  
 }
