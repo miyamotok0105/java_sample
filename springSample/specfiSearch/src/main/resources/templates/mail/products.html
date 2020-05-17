@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2 style="margin-bottom: 20px;" th:inline="text">[[${name}]]様</h2>
+	<p>商品の一覧です。ご確認ください。</p>
+	<table style="margin: 10px 30px 0px 0px; padding: 0px; border: solid 1px #666; border-spacing: 0; font: small/1.5 Arial,Helvetica,sans-serif;">
+		<tr style="text-align: center;">
+			<td style="width: 20px;  background: #65ace4;color: #fff;padding: 3px 5px;border-bottom: solid 1px #666;border-right: solid 1px #fff;">No</td>
+			<td style="width: 150px; background: #65ace4;color: #fff;padding: 3px 5px;border-bottom: solid 1px #666;border-right: solid 1px #fff;">商品名</td>
+			<td style="width: 50px;  background: #65ace4;color: #fff;padding: 3px 5px;border-bottom: solid 1px #666;border-right: solid 1px #666;">価格</td>
+		</tr>
+		<tr th:each="product,iterStat : ${productList}">
+		    <td style="padding: 3px 5px;border-bottom: dotted 1px #666;text-align: center;border-right: solid 1px #000;" 
+		    th:text="${iterStat.count}"></td>
+		    <td style="padding: 3px 5px;border-bottom: dotted 1px #666;text-align: left;border-right: solid 1px #000;" 
+		    th:text="${product.productName}"></td>
+		    <td style="padding: 3px 5px;border-bottom: dotted 1px #666;text-align: right;border-right: solid 1px #000;"
+		    th:inline="text">[[${product.price}]]円</td>
+		</tr>
+	</table>
+</body>
+</html>
