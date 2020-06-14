@@ -44,12 +44,14 @@ use spring
 resourcesの中のdatabase/schema.sqlを実行すること。
 ```
 
+
+.propertiesで書くパターンと.ymlで書くパターンが存在する。    
 usernameとpasswordは環境に合わせて修正すること。
-
-
+jdbc:mysql://localhost:3306/springのspringの部分がデータベース名。    
+								      
 
 ```:resources/application.properties
-spring.datasource.url=jdbc:mysql://localhost:3306/sample
+spring.datasource.url=jdbc:mysql://localhost:3306/spring
 spring.datasource.username=member_admin
 spring.datasource.password=Password$
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver

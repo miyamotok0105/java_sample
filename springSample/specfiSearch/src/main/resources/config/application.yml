@@ -1,0 +1,31 @@
+# application.propertiesをこっちに変えても勝手にスキャンして設定読み込むよ。
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring
+    username: root
+    password: password
+    driver-class-name: com.mysql.jdbc.Driver
+  mail:
+    default-encoding: UTF-8
+    protocol: smtp
+    host: localhost
+    port: 1025
+  thymeleaf:
+    check-template-location: false
+users:
+  intervel: 1001
+
+#  users:
+#    id: user-dev
+#    name: 開発ユーザー
+## spring.profiles.activeにアクティブなプロファイルを指定する
+#spring:
+#  profiles:
+#    active: dev
+# 
+## "---"でプロファイルを区切る
+## spring.profilesにプロファイル名を書く
+#---
+#spring:
+
+#---
