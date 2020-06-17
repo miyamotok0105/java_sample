@@ -3,9 +3,16 @@ package com.example.miyamoto.spring.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
+//mail：MailSender
+import org.springframework.mail.MailSender;
+//mail：JavaMailSender
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -72,4 +79,61 @@ public class MailController {
 		productMailService.sendMail(context);
 		return "メール送信しました";
     }
+    
+    
+    //================================
+    // テキストメール送る
+    @Autowired
+    private MailSender mailSender;
+        
+    @RequestMapping(value="/mail/mailsender", method=RequestMethod.GET)
+    public String mailSenderSend() {
+    	SimpleMailMessage msg = new SimpleMailMessage();
+    	msg.setFrom("test@mail.com");
+        msg.setTo("miyamotok0105@gmail.com");
+        msg.setSubject("テストメール"); //タイトルの設定
+        msg.setText("Spring Boot より本文送信"); //本文の設定
+        this.mailSender.send(msg);
+        return "メール送信しました";
+    }
+    
+    //================================
+    // テンプレートメール送る
+    @RequestMapping(value="/mail/javamailsender", method=RequestMethod.GET)
+    public String javaMailSenderSend() {
+    	MimeMessage mail = javaMailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(mail, true);
+            helper.setTo("mymail@mail.co.uk");
+            helper.setReplyTo("someone@localhost");
+            helper.setFrom("someone@localhost");
+            helper.setSubject("Lorem ipsum");
+            helper.setText("Lorem ipsum dolor sit amet [...]");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        } finally {}
+        javaMailSender.send(mail);
+        return "テンプレメール送信しました";
+    }
+    
+    public void send(String subject, String content) {
+
+        try {
+          MimeMessage mail = javaMailSender.createMimeMessage();
+          mail.setHeader("Content-Transfer-Encoding", "base64");
+          MimeMessageHelper helper = new MimeMessageHelper(mail, false);
+
+          helper.setTo("xxx.yyy.zzz@example.com");
+          helper.setReplyTo("*****.*****.*****@gmail.com");
+          helper.setFrom("*****.*****.*****@gmail.com");
+          helper.setSubject(subject);
+          helper.setText(content);
+
+          javaMailSender.send(mail);
+
+        } catch (MessagingException e) {
+          e.printStackTrace();
+        }
+      }
+
 }

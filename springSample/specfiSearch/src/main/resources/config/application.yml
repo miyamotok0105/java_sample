@@ -14,6 +14,18 @@ spring:
     check-template-location: false
 users:
   intervel: 1001
+#mailhog
+#http://localhost:8080/mail/mailsender
+#http://localhost:8080/mail/javamailsender
+mail:
+    host: mailhog
+    port: 1025
+    username: ""
+    password: ""
+#    host: smtp.gmail.com
+#    properties.mail.smtp.auth: true
+#    properties.mail.smtp.starttls.enable: true
+
 
 #  users:
 #    id: user-dev
