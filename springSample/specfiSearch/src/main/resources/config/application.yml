@@ -5,6 +5,10 @@ spring:
     username: root
     password: password
     driver-class-name: com.mysql.jdbc.Driver
+  messages:
+    basename: messages
+    cache-duration: -1
+    encoding: UTF-8
   mail:
     default-encoding: UTF-8
     protocol: smtp

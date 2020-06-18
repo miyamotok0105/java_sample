@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+
+<body th:object="${validSampleForm2}">
+
+    <ul>
+        <li th:each="error : ${#fields.detailedErrors()}">
+            <span th:text="${error.message}">Error message</span>
+        </li>
+    </ul>
+
+    <form  method="post" th:action="@{/validSample2}" >
+        <p>text1</p>
+        <input path="text1" type="text" th:field="*{text1}"/>
+
+        <input type="submit" value="送る"/>
+    </form>
+</body>

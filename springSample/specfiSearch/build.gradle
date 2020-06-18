@@ -23,6 +23,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	compile('org.webjars:jquery:1.11.1')
+    //compile('org.webjars:jquery-ui:1.12.1')
+    compile('org.webjars:bootstrap:3.3.7-1')
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
